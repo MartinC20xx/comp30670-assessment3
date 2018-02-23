@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from .context import sample
+# from .context import led_project - need to ask about this, if going to use this context file at all
+from led_project import main
 
 import unittest
 
@@ -8,8 +9,11 @@ import unittest
 class BasicTestSuite(unittest.TestCase):
     """Basic test cases."""
 
-    def test_absolute_truth_and_meaning(self):
-        assert True
+    def testGridSize(self):
+        assert(main.grid.size) == main.L ** 2
+
+# need to test 
+
 
 
 if __name__ == '__main__':
