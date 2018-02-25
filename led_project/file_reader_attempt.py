@@ -4,23 +4,38 @@
 
 import requests
 
-# need to be able to read from local files too
 
 #url = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt'
-# why b and ''? - is bytes type. 
-# might be quicker to just get whole file at the beginning.
-r = requests.get('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt', stream=True)
+
+
+# have an if statement check for local file or online (if starts with http:?)
+
+# dummy input
+global instructions_text  # temporarily using global var. won't need when methods are set up
+input = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt'
+
+if(input.startswith('http://')):
+    r = requests.get('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt', stream=True)
+    instructions_text = r.text
+else:
+    instructions_text = input
+    
+instructions_list = instructions_text.split(sep='\n')
+
+for instruction in instructions_list:
+    
+    if('turn on' in instruction):
+        pass
+    elif('turn off' in instruction):
+        pass
+    elif('switch' in instruction):
+        pass
+    
+    print(instruction)
 
 
 
-for line in r.iter_lines():
-    if line: 
-        print(type(line))
-        str = line.decode("utf-8") # decode converts from bytes type to str
-        print(type(str))
-        print(str)
 
-print(type(r))
        
     
 
