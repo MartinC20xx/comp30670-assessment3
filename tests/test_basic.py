@@ -11,31 +11,49 @@ class BasicTestSuite(unittest.TestCase):
 
     def testGridSize(self):
         assert(main.grid.size) == main.L ** 2
+    
+    def testLightCount(self):
+        pass
 
     def testInputFileExists(self):
         assert(main.input_file) != None
+        #etc
+    # extra test for check file is valid format?    
     
-    # should test out each of the three operations.
-    # although might not need separate methods for each one. 
-    # could just have a process input line method.
+    def testInstructionsFromFileOk(self):
+        pass
     
-    #def testTurnOnFromOff(self):
-        #assert (main.turn_on()) == True
+    def testInvalidInstructionIgnored(self):
+        pass
     
-    #def testTurnOnWhenOn(self):
-        #assert (main.turn_on()) == True
+    def testValidLineParsedCorrectly(self):
+        pass
+    
+    def testCmdAssignedToCorrectMethod(self):
+        pass
+    
+    # tests for correct functionality of main light methods
+
+    def testTurnOnFromOff(self):
+        pass
+    
+    def testTurnOnWhenOn(self):
+        pass
         
-    #def testTurnOffFromOn(self):
-        #assert (main.turn_off()) == False
+    def testTurnOffFromOn(self):
+        pass
     
-    #def testTurnOffWhenOff(self):
-        #assert (main.turn_off()) == False
+    def testTurnOffWhenOff(self):
+        pass
         
-    #def testSwitchWhenOn(self):
-        #assert (main.switch()) == False
+    def testSwitchWhenOn(self):
+        pass
         
-    #def testSwitchWhenOff(self):
-        #assert (main.switch()) == True
+    def testSwitchWhenOff(self):
+        pass
+        
+    #######
+    
     
 
 if __name__ == '__main__':
