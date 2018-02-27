@@ -26,6 +26,9 @@ grid = np.full((L, L), False)
 # i think i can do something like grid[0:999, 0:1] = True
 # can change multiple values using slice notation and = to assign
 
+def lightCount(npArr):
+    return np.sum(npArr)
+    
 
 print(grid.dtype, '\n')
 print(grid, '\n')

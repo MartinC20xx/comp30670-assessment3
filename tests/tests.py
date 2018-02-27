@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 
 # from .context import led_project - need to ask about this, if going to use this context file at all
-from led_project import main
+from led_project import main, process_instruction_sketch
 
-import unittest
+import unittest # can remove, because have changed to pytest
+import numpy as np
 
 
 class BasicTestSuite(unittest.TestCase):
     """Basic test cases."""
 
-    def testGridSize(self):
+    def testGridSize(self): #test for grid exists. find better?
         assert(main.grid.size) == main.L ** 2
     
     def testLightCount(self):
@@ -19,10 +20,7 @@ class BasicTestSuite(unittest.TestCase):
         assert(main.input_file) != None
         #etc
     # extra test for check file is valid format?    
-    
-    def testInstructionsFromFileOk(self):
-        pass
-    
+     
     def testInvalidInstructionIgnored(self):
         pass
     
