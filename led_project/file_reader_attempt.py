@@ -3,7 +3,7 @@
 # possible reference - https://stackoverflow.com/questions/16870648/python-read-website-data-line-by-line-when-available
 
 import requests
-
+import re
 
 #url = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt'
 
@@ -22,16 +22,15 @@ else:
     
 instructions_list = instructions_text.split(sep='\n')
 
+#straight from the lecture notes
+instruction_pattern = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*") 
+
+
 for instruction in instructions_list:
     
-    if('turn on' in instruction):
-        pass
-    elif('turn off' in instruction):
-        pass
-    elif('switch' in instruction):
-        pass
+    print(instruction_pattern.split(instruction))
     
-    print(instruction)
+    
 
 
 
