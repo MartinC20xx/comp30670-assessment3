@@ -3,17 +3,18 @@
 # from .context import led_project - need to ask about this, if going to use this context file at all
 from led_project import main, process_instruction_sketch
 
-import unittest # can remove, because have changed to pytest
 import numpy as np
+import pytest
 
-
-class BasicTestSuite(unittest.TestCase):
+class BasicTestSuite():
     """Basic test cases."""
-
-    def testGridSize(self): #test for grid exists. find better?
+    
+    
+    
+    def test_grid_size(self): #test for grid exists. find better?
         assert(main.grid.size) == main.L ** 2
     
-    def testLightCount(self):
+    def test_light_count(self):
         pass
 
     def testInputFileExists(self):
@@ -55,4 +56,4 @@ class BasicTestSuite(unittest.TestCase):
     
 
 if __name__ == '__main__':
-    unittest.main()
+    BasicTestSuite()

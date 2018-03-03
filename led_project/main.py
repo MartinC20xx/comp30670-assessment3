@@ -1,36 +1,32 @@
-# -*- coding: utf-8 -*-
-import numpy as np
+'''Console script for led_project.'''
 
-# going to try using numpy array with zeros and ones 
-# https://stackoverflow.com/questions/21174961/how-to-create-a-numpy-array-of-all-true-or-all-false
-# leds initialised to false/off
+import sys
+import click
+import re
+from led_project import input_reader, instructions_processor
+click.disable_unicode_literals_warning = True
 
-input_file = 0 # placeholder for var for input file
-
-#with open(input_file) as f:
-    #for line in f:
-        #method here for processing each line
-        # look back at data analysis notes for open() file stuff.
-
-#actually, setup.py 'should install a script which reads input from a file'
-
-
-L = 8 # test var for size. given in the first line of the input file
-
-grid = np.full((L, L), False)
-
-# two formats for selecting data from multi-d arr. double bracket and single bracket with comma.
-# single bracket recommended in tutorial. 
-# [:,:] rows, cols
-# therefore, can have (0,0 through 999,0) == [0:999, 0:1] or [0:999, 0]
-# i think i can do something like grid[0:999, 0:1] = True
-# can change multiple values using slice notation and = to assign
-
-def lightCount(npArr):
-    return np.sum(npArr)
+@click.command()
+@click.option('--input', default=None, help="Specify input file. File path or URL accepted")
+def main(input=None):
+    '''Console script for led_project'''
+    print('input: ', input)
+    
+    # read input file and convert to list of instruction lines 
+    instructions_list = input_reader.read_input(input)
+    instruction_pattern = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*") 
+    
+    #actual turning on/off of the lights
+    for instruction in instructions_list:
+    
+        # each instruction_line is a list from a parsed line of instructions
+        instruction_line = instruction_pattern.split(instruction)
+        instructions_processor.process_line(instruction_line)
+    
+    
+    print("Light count: ", instructions_processor.count_lights())
+    
     
 
-print(grid.dtype, '\n')
-print(grid, '\n')
-grid[0:8,0:1] = True
-print(grid)
+if __name__ == '__main__':
+    sys.exit(main())
