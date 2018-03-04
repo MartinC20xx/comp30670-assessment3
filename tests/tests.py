@@ -58,7 +58,7 @@ class TestSuite():
         
         assert parsed_line == ['turn off', 0, 0, grid_size, grid_size]
         
-        
+        # change to grid size - 1
         
         
         
@@ -68,56 +68,62 @@ class TestSuite():
 
     def test_turn_on_from_off(self):
         grid = np.full((2,2), False)
-        line = ['turn on', 0, 0, 1, 1]
-        instructions_processor.process_line(grid, line)
+        numbers = [0, 0, 1, 1]
+        instructions_processor.turn_on(self, grid, numbers)
         
-        #assert grid[0][0] == True
-        pass
+        assert grid[0][0] == True
+       
     
     def test_turn_on_when_on(self):
         grid = np.full((2,2), True)
-        line = ['turn on', 0, 0, 1, 1]
-        instructions_processor.process_line(grid, line)
+        numbers = [0, 0, 1, 1]
+        instructions_processor.turn_on(self, grid, numbers)
         
-        #assert grid[0][0] == True
-        pass
+        assert grid[0][0] == True
+    
         
     def test_turn_off_from_on(self):
         grid = np.full((2,2), True)
-        line = ['turn off', 0, 0, 1, 1]
-        instructions_processor.process_line(grid, line)
+        numbers = [0, 0, 1, 1]
+        instructions_processor.turn_off(self, grid, numbers)
         
-        #assert grid[0][0] == False
-        pass
+        assert grid[0][0] == False
+     
     
     def test_turn_off_when_off(self):
         grid = np.full((2,2), False)
-        line = ['turn off', 0, 0, 1, 1]
-        instructions_processor.process_line(grid, line)
+        numbers = [0, 0, 1, 1]
+        instructions_processor.turn_off(self, grid, numbers)
         
-        #assert grid[0][0] == False
-        pass
+        assert grid[0][0] == False
+        
         
     def test_switch_when_on(self):
         grid = np.full((2,2), True)
-        line = ['switch', 0, 0, 1, 1]
-        instructions_processor.process_line(grid, line)
+        numbers = [0, 0, 1, 1]
+        instructions_processor.switch(self, grid, numbers)
         
-        #assert grid[0][0] == False
-        pass
+        assert grid[0][0] == False
+
         
     def test_switch_when_off(self):
         grid = np.full((2,2), False)
-        line = ['switch', 0, 0, 1, 1]
-        instructions_processor.process_line(grid, line)
+        numbers = [0, 0, 1, 1]
+        instructions_processor.switch(self, grid, numbers) 
         
-        #assert grid[0][0] == True
+        assert grid[0][0] == True
     
-        pass
+      
          
     def test_invalid_command_ignored(self):
         # maybe have a temp grid, perform process, then compare with orig
-        pass
+        grid1 = np.full((2,2), False)
+        grid2 = np.copy(grid1)
+        parsed_line = ['urbt on',2 ,1 ,8 ,9]
+        instructions_processor.process_line(self, grid2, parsed_line)
+        
+        assert grid1.sum() == grid2.sum()
+        
     
 
     

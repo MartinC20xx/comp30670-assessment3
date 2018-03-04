@@ -13,24 +13,45 @@ def process_line(self, grid, parsed_line):
         pass # come back to this
     
     elif(parsed_line[0] == 'turn on'):
-            turn_on(numbers)
+            turn_on(grid, numbers)
         
     elif(parsed_line[0] == 'turn off'):
-            turn_off(numbers)
+            turn_off(grid, numbers)
             
     elif(parsed_line[0] == 'switch'):
-            switch(numbers)
+            switch(grid, numbers)
         
 
-def turn_on(self, numbers):
+def turn_on(self, grid, numbers):
+    row_start = numbers[0]
+    row_end = numbers[2]
+    col_start = numbers[1]
+    col_end = numbers[3]
     
-    pass
+    grid[row_start:row_end, col_start:col_end] = True
+    
+def turn_off(self, grid, numbers):
+    row_start = numbers[0]
+    row_end = numbers[2]
+    col_start = numbers[1]
+    col_end = numbers[3]
+    
+    grid[row_start:row_end, col_start:col_end] = False
 
-def turn_off(self, numbers):
-    pass
+def switch(self, grid, numbers):
+    row_start = numbers[0]
+    row_end = numbers[2]
+    col_start = numbers[1]
+    col_end = numbers[3]
+    
+    for i in range(row_start, row_end):
+        for j in range(col_start, col_end):
+            if(grid[i][j] == False):
+                grid[i][j] = True
+            else:
+                grid[i][j] = False
+    
 
-def switch(self, numbers):
-    pass
 
 
 def count_lights(self, grid):

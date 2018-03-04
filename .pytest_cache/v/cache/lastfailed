@@ -1,9 +1,3 @@
 {
-  "tests/tests.py::TestSuite::()::test_read_local_input_size": true,
-  "tests/tests.py::TestSuite::()::test_switch_when_off": true,
-  "tests/tests.py::TestSuite::()::test_switch_when_on": true,
-  "tests/tests.py::TestSuite::()::test_turn_off_from_on": true,
-  "tests/tests.py::TestSuite::()::test_turn_off_when_off": true,
-  "tests/tests.py::TestSuite::()::test_turn_on_from_off": true,
-  "tests/tests.py::TestSuite::()::test_turn_on_when_on": true
+  "tests/tests.py::TestSuite::()::test_read_local_input_size": true
 }
