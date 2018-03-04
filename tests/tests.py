@@ -5,6 +5,7 @@ from led_project import main, input_reader
 
 import numpy as np
 import pytest
+from led_project.main import parse_line
 
 class TestSuite():
     """Basic test cases."""
@@ -41,11 +42,14 @@ class TestSuite():
         #print(id(grid)) - reminder 
         assert grid.size == 225
         
-    ######3
+    ######
     
-    def test_light_count(self):
-        pass
+    def test_line_parse(self):
+        sample_instructions_list = input_reader.read_input('./test_input.txt') 
+        parsed_line = main.parse_line(self,sample_instructions_list[1])
+        assert parsed_line == ['turn on', 3, 3, 8, 8]
 
+        
     def testInvalidInstructionIgnored(self):
         pass
     
@@ -74,10 +78,8 @@ class TestSuite():
         
     def testSwitchWhenOff(self):
         pass
+    
+    def test_light_count(self):
+        pass
         
     #######
-    
-    
-
-#if __name__ == '__main__':
- #   BasicTestSuite()

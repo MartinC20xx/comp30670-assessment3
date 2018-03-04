@@ -19,13 +19,11 @@ def main(input=None):
     grid_size = instructions_list[0]
     create_grid(grid_size)
     # parse instructions using regex (from module notes)
-    instruction_pattern = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*") 
-    
-    #actual turning on/off of the lights
     for instruction in instructions_list:
-    
         # each instruction_line is a list from a parsed line of instructions
-        instruction_line = instruction_pattern.split(instruction)
+        instruction_line = parse_line(instruction)
+        print(instruction_line)
+        #actual turning on/off of the lights
         instructions_processor.process_line(instruction_line)
     
     
@@ -34,8 +32,14 @@ def main(input=None):
     
 def create_grid(self, size):
     return np.full((size, size), False)
+
+def parse_line(self, instruction):
+    instruction_pattern = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*") 
+    line = instruction_pattern.split(instruction)
+    line = list(filter(None, line))
+    line[1:] = [int(num) for num in line[1:]]
+    return line
     
-       
 
 if __name__ == '__main__':
     sys.exit(main())
