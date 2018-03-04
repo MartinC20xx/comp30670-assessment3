@@ -21,7 +21,7 @@ def main(input=None):
     # parse instructions using regex (from module notes)
     for instruction in instructions_list:
         # each instruction_line is a list from a parsed line of instructions
-        instruction_line = parse_line(instruction)
+        instruction_line = parse_line(instruction, grid_size)
         print(instruction_line)
         #actual turning on/off of the lights
         instructions_processor.process_line(instruction_line)
@@ -33,11 +33,15 @@ def main(input=None):
 def create_grid(self, size):
     return np.full((size, size), False)
 
-def parse_line(self, instruction):
+def parse_line(self, instruction, grid_size):
     instruction_pattern = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*") 
     line = instruction_pattern.split(instruction)
     line = list(filter(None, line))
     line[1:] = [int(num) for num in line[1:]]
+    
+     # test numbers for out of range values. trim to nearest existing grid position
+    line[1:] = list(map(lambda num: 0 if num < 0 else num, line[1:]))
+    line[1:] = list(map(lambda num: grid_size if num > grid_size else num, line[1:]))
     return line
     
 
