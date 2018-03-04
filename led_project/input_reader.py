@@ -6,11 +6,13 @@ def read_input(input):
     if(input.startswith('http://')):
         r = requests.get(input, stream=True)
         instructions_text = r.text
+        instructions_list = instructions_text.split(sep='\n')
     else:
-        instructions_text = input
+        
+        buffer = open(input).read()
+        instructions_list = buffer.split('\n')
+                
     
-    
-    instructions_list = instructions_text.split(sep='\n')
     
     #this should be moved to another function for processing
     #instruction_pattern = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*") 
@@ -20,9 +22,12 @@ def read_input(input):
  
    
 input = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt'
+input_local = 'test_input.txt'
 
 
-instructions = read_input(input)
+instructions = read_input(input_local)
+print(instructions[0]=='1000')
+print(instructions[3]=='turn off 199,133 through 461,193')
 for instruction in instructions:
     
     #print(instruction_pattern.split(instruction))
