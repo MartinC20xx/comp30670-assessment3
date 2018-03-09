@@ -1,0 +1,9 @@
+10
+turn on 3,3 through 8,8
+turn on 4,4 through 5,5
+turn off 4,4 through 6,6
+turn off 4,4 through 5,5
+switch 5,5 through 9,9
+urbt on 2,1 through 8,9
+turn off -7,-7 through 12,12
+switch 3,1 through 5,4

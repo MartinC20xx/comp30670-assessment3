@@ -24,15 +24,15 @@ def parse_line(instruction, grid_size):
     line = list(filter(None, line))
     line[1:] = [int(num) for num in line[1:]]
     
-     # test numbers for out of range values. trim to nearest existing grid position
+    # test numbers for out of range values. trim to nearest existing grid position
     line[1:] = list(map(lambda num: 0 if num < 0 else num, line[1:]))
-    line[1:] = list(map(lambda num: grid_size if num > grid_size else num, line[1:]))
+    line[1:] = list(map(lambda num: (grid_size-1) if num > (grid_size-1) else num, line[1:]))
     return line
 
 
 
    
-input = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt'
+input3 = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt'
 input_local = 'test_input.txt'
 
 
