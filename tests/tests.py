@@ -6,7 +6,7 @@ from led_project import main, input_reader, instructions_processor
 import numpy as np
 import pytest
 from led_project.main import parse_line
-from led_project.led_tester import LED_tester
+from led_project.led_tester import LEDTester
 
 class TestSuite():
     """Basic test cases."""
@@ -33,11 +33,11 @@ class TestSuite():
     # test grid creation
     
     def test_grid_init(self):
-        grid = LED_tester(15).grid
+        grid = LEDTester(15).grid
         assert (grid[0][0] == False) and (grid.sum() == 0)
         
     def test_grid_size(self): 
-        grid = LED_tester(15).grid
+        grid = LEDTester(15).grid
         assert grid.size == 225
         
     ######
@@ -65,7 +65,7 @@ class TestSuite():
     # test process line
 
     def test_turn_on_from_off(self):
-        tester = LED_tester(2)
+        tester = LEDTester(2)
         numbers = [0, 0, 1, 1]
         tester.turn_on(tester.grid, numbers)
         
@@ -73,7 +73,7 @@ class TestSuite():
        
     
     def test_turn_on_when_on(self):
-        tester = LED_tester(2)
+        tester = LEDTester(2)
         tester.grid[:] = True
         numbers = [0, 0, 1, 1]
         tester.turn_on(tester.grid, numbers)
@@ -82,7 +82,7 @@ class TestSuite():
     
         
     def test_turn_off_from_on(self):
-        tester = LED_tester(2)
+        tester = LEDTester(2)
         tester.grid[:] = True
         numbers = [0, 0, 1, 1]
         tester.turn_off(tester.grid, numbers)
@@ -91,7 +91,7 @@ class TestSuite():
      
     
     def test_turn_off_when_off(self):
-        tester = LED_tester(2)
+        tester = LEDTester(2)
         numbers = [0, 0, 1, 1]
         tester.turn_off(tester.grid, numbers)
         
@@ -99,7 +99,7 @@ class TestSuite():
         
         
     def test_switch_when_on(self):
-        tester = LED_tester(2)
+        tester = LEDTester(2)
         tester.grid[:] = True
         numbers = [0, 0, 1, 1]
         tester.switch(tester.grid, numbers)
@@ -108,7 +108,7 @@ class TestSuite():
 
         
     def test_switch_when_off(self):
-        tester = LED_tester(2)
+        tester = LEDTester(2)
         numbers = [0, 0, 1, 1]
         tester.switch(tester.grid, numbers) 
         
@@ -117,10 +117,10 @@ class TestSuite():
       
          
     def test_invalid_command_ignored(self):
-        grid1 = LED_tester(2).grid
+        grid1 = LEDTester(2).grid
         grid2 = np.copy(grid1)
         parsed_line = ['urbt on',2 ,1 ,8 ,9]
-        LED_tester.process_line(self, grid2, parsed_line)
+        LEDTester.process_line(self, grid2, parsed_line)
         
         assert grid1.sum() == grid2.sum()
         
@@ -131,9 +131,9 @@ class TestSuite():
     
     
     def test_light_count(self):
-        grid = LED_tester(4).grid
+        grid = LEDTester(4).grid
         grid[:] = True
         
-        assert LED_tester.count_lights(self, grid) == 16
+        assert LEDTester.count_lights(self, grid) == 16
         
     #######

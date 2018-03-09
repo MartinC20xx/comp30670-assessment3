@@ -3,7 +3,7 @@ Main led tester class.
 '''
 import numpy as np
 
-class LED_tester:
+class LEDTester:
     
     def __init__(self, grid_size):
         # create the grid with the given size
