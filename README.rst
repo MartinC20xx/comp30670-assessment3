@@ -1,12 +1,14 @@
-Sample Module Repository
+LED Tester
 ========================
 
-This simple project is an example repo for Python projects.
-
-`Learn more <http://www.kennethreitz.org/essays/repository-structure-and-python>`_.
+This is assessment 3 for comp30670.
 
 ---------------
 
-If you want to learn more about ``setup.py`` files, check out `this repository <https://github.com/kennethreitz/setup.py>`_.
 
-✨🍰✨
+- Install app using pip install git+https://github.com/MartinC20xx/comp30670-assessment3.git
+
+- Usage: led_tester --input [URI to appropriate text file]
+	eg. led_tester --input 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt'
+	
+- led_tester --help for more details
