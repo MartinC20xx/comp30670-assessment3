@@ -6,11 +6,14 @@ from led_project import main, input_reader, instructions_processor
 import numpy as np
 import pytest
 from led_project.main import parse_line
+from led_project.led_tester import LED_tester
 
 class TestSuite():
     """Basic test cases."""
     
     # test input reader
+    # might need to __init__ instance here then access from object rather than just module name
+    # self problem was coming from the fact that there was no class / object instance involved
     
     
     def test_read_local_input_line(self):
@@ -30,16 +33,11 @@ class TestSuite():
     # test grid creation
     
     def test_grid_init(self):
-        grid = main.create_grid(self,15)
-        #grid[:,:] == False
-        #grid.sum() = 0
+        grid = LED_tester(15).grid
         assert (grid[0][0] == False) and (grid.sum() == 0)
         
     def test_grid_size(self): 
-        # what is going on with self here?
-        #print(id(self)) - reminder for the issue
-        grid = main.create_grid(self,15)
-        #print(id(grid)) - reminder 
+        grid = LED_tester(15).grid
         assert grid.size == 225
         
     ######
@@ -67,60 +65,62 @@ class TestSuite():
     # test process line
 
     def test_turn_on_from_off(self):
-        grid = np.full((2,2), False)
+        tester = LED_tester(2)
         numbers = [0, 0, 1, 1]
-        instructions_processor.turn_on(self, grid, numbers)
+        tester.turn_on(tester.grid, numbers)
         
-        assert grid[0][0] == True
+        assert tester.grid[0][0] == True
        
     
     def test_turn_on_when_on(self):
-        grid = np.full((2,2), True)
+        tester = LED_tester(2)
+        tester.grid[:] = True
         numbers = [0, 0, 1, 1]
-        instructions_processor.turn_on(self, grid, numbers)
+        tester.turn_on(tester.grid, numbers)
         
-        assert grid[0][0] == True
+        assert tester.grid[0][0] == True
     
         
     def test_turn_off_from_on(self):
-        grid = np.full((2,2), True)
+        tester = LED_tester(2)
+        tester.grid[:] = True
         numbers = [0, 0, 1, 1]
-        instructions_processor.turn_off(self, grid, numbers)
+        tester.turn_off(tester.grid, numbers)
         
-        assert grid[0][0] == False
+        assert tester.grid[0][0] == False
      
     
     def test_turn_off_when_off(self):
-        grid = np.full((2,2), False)
+        tester = LED_tester(2)
         numbers = [0, 0, 1, 1]
-        instructions_processor.turn_off(self, grid, numbers)
+        tester.turn_off(tester.grid, numbers)
         
-        assert grid[0][0] == False
+        assert tester.grid[0][0] == False
         
         
     def test_switch_when_on(self):
-        grid = np.full((2,2), True)
+        tester = LED_tester(2)
+        tester.grid[:] = True
         numbers = [0, 0, 1, 1]
-        instructions_processor.switch(self, grid, numbers)
+        tester.switch(tester.grid, numbers)
         
-        assert grid[0][0] == False
+        assert tester.grid[0][0] == False
 
         
     def test_switch_when_off(self):
-        grid = np.full((2,2), False)
+        tester = LED_tester(2)
         numbers = [0, 0, 1, 1]
-        instructions_processor.switch(self, grid, numbers) 
+        tester.switch(tester.grid, numbers) 
         
-        assert grid[0][0] == True
+        assert tester.grid[0][0] == True
     
       
          
     def test_invalid_command_ignored(self):
-        # maybe have a temp grid, perform process, then compare with orig
-        grid1 = np.full((2,2), False)
+        grid1 = LED_tester(2).grid
         grid2 = np.copy(grid1)
         parsed_line = ['urbt on',2 ,1 ,8 ,9]
-        instructions_processor.process_line(self, grid2, parsed_line)
+        LED_tester.process_line(self, grid2, parsed_line)
         
         assert grid1.sum() == grid2.sum()
         
@@ -131,6 +131,9 @@ class TestSuite():
     
     
     def test_light_count(self):
-        pass
+        grid = LED_tester(4).grid
+        grid[:] = True
+        
+        assert LED_tester.count_lights(self, grid) == 16
         
     #######
