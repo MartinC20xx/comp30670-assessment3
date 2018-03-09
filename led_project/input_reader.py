@@ -30,17 +30,6 @@ def parse_line(instruction, grid_size):
     return line
 
 
-
-   
-input3 = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt'
-input_local = 'test_input.txt'
-
-
-instructions = read_input(input_local)
-print(instructions[0]=='1000')
-print(instructions[3]=='turn off 199,133 through 461,193')
-for instruction in instructions:
-    print(instruction)
     
     
 

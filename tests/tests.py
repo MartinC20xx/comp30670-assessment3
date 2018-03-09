@@ -42,13 +42,9 @@ class TestSuite():
         test_line = 'turn off -7,-7 through 12,12'
         parsed_line = input_reader.parse_line(test_line, grid_size)
         
-        assert parsed_line == ['turn off', 0, 0, grid_size, grid_size]
+        assert parsed_line == ['turn off', 0, 0, grid_size-1, grid_size-1]
         
-        # change to grid size - 1
-        
-        
-        
-        
+          
         
     # test process line
 

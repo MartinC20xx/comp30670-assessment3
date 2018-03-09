@@ -2,6 +2,7 @@
 Console script for led_tester.
 '''
 import sys
+sys.path.append('..')
 import click
 from led_project import led_tester
 #from led_tester import LEDTester
@@ -20,8 +21,9 @@ def main(input=None):
     input_b = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_b.txt'  
     input_c = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt'
     input_d = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt'
-      # read input file and convert to list of instruction lines 
-    instructions_list = input_reader.read_input(input_d)
+    
+    # read input file and convert to list of instruction lines 
+    instructions_list = input_reader.read_input(input_test)
     # get grid size from first line of instructions list
     grid_size = int(instructions_list[0])
     # remove size line from instructions list
@@ -33,7 +35,6 @@ def main(input=None):
         line = input_reader.parse_line(instruction, grid_size)
         if(len(line) < 1):
             continue
-        # seems to be processing 
         tester.process_line(line)
         
     print(tester.count_lights())
