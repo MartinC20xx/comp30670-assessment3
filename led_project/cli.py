@@ -14,11 +14,14 @@ def main(input=None):
     '''Console script for led_project'''
     
     input_test = './test_input.txt'
+    
+    first_input = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt'
     input_a = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_a.txt'
     input_b = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_b.txt'  
     input_c = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt'
+    input_d = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt'
       # read input file and convert to list of instruction lines 
-    instructions_list = input_reader.read_input(input_c)
+    instructions_list = input_reader.read_input(input_d)
     # get grid size from first line of instructions list
     grid_size = int(instructions_list[0])
     # remove size line from instructions list

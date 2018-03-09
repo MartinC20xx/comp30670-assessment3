@@ -30,29 +30,29 @@ class LEDTester:
                
     
     def turn_on(self, numbers):
-        row_start = numbers[0]
-        row_end = numbers[2]
-        col_start = numbers[1]
-        col_end = numbers[3]
+        row_start = min(numbers[0],numbers[2])
+        row_end = max(numbers[0], numbers[2])
+        col_start = min (numbers[1], numbers[3])
+        col_end = max(numbers[1], numbers[3])
         
-        self.grid[row_start:row_end, col_start:col_end] = True
+        self.grid[row_start:row_end+1, col_start:col_end+1] = True
         
     def turn_off(self, numbers):
-        row_start = numbers[0]
-        row_end = numbers[2]
-        col_start = numbers[1]
-        col_end = numbers[3]
+        row_start = min(numbers[0],numbers[2])
+        row_end = max(numbers[0], numbers[2])
+        col_start = min (numbers[1], numbers[3])
+        col_end = max(numbers[1], numbers[3])
         
-        self.grid[row_start:row_end, col_start:col_end] = False
+        self.grid[row_start:row_end+1, col_start:col_end+1] = False
     
     def switch(self, numbers):
-        row_start = numbers[0]
-        row_end = numbers[2]
-        col_start = numbers[1]
-        col_end = numbers[3]
+        row_start = min(numbers[0],numbers[2])
+        row_end = max(numbers[0], numbers[2])
+        col_start = min (numbers[1], numbers[3])
+        col_end = max(numbers[1], numbers[3])
         
-        for i in range(row_start, row_end):
-            for j in range(col_start, col_end):
+        for i in range(row_start, row_end+1):
+            for j in range(col_start, col_end+1):
                 if(self.grid[i][j] == False):
                     self.grid[i][j] = True
                 else:

@@ -1,3 +1,4 @@
 {
+  "tests/tests.py::TestSuite::()::test_command_selected": true,
   "tests/tests.py::TestSuite::()::test_read_local_input_size": true
 }
