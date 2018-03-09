@@ -23,12 +23,12 @@ setup(
     install_requires=[
         'Click',
         ],
-    packages=find_packages(exclude=('tests', 'docs'))
+    packages=find_packages(exclude=('tests', 'docs')),
    
-    #entry_points={
-     #   "console_scripts":[
-      #      'led_tester = led_project.cli:main']
-       # }
+    entry_points={
+        "console_scripts":[
+            'led_tester = led_project.cli:main']
+        }
 
 )
 
