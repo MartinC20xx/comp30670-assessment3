@@ -19,6 +19,16 @@ setup(
     author_email='martin.casey@ucdconnect.ie',
     url='https://github.com/MartinC20xx/comp30670-assessment3',
     license=license,
+    include_package_data=True,
+    install_requires=[
+        'Click',
+        ],
     packages=find_packages(exclude=('tests', 'docs'))
+   
+    #entry_points={
+     #   "console_scripts":[
+      #      'led_tester = led_project.cli:main']
+       # }
+
 )
 
